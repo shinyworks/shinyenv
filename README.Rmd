@@ -1,0 +1,38 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# shinyenv
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+An experimental package to capture and reroute dangerous Shiny function calls.
+
+## Installation
+
+You can install the development version of shinyenv from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("shinyworks/shinyenv")
+```
+
+## Usage
+
+Add usage information and examples here.
+
+## Code of Conduct
+
+Please note that the shinyenv project is released with a [Contributor Code of Conduct](https://shinyworks.github.io/shinyenv/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
