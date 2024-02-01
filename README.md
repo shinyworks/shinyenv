@@ -14,8 +14,8 @@ coverage](https://codecov.io/gh/shinyworks/shinyenv/branch/main/graph/badge.svg)
 [![R-CMD-check](https://github.com/shinyworks/shinyenv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shinyworks/shinyenv/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-An experimental package to capture and reroute dangerous Shiny function
-calls.
+An experimental package to deal with environment-like variables in
+Shiny.
 
 ## Installation
 
@@ -23,13 +23,25 @@ You can install the development version of shinyenv from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("shinyworks/shinyenv")
+# install.packages("pak")
+pak::pak("shinyworks/shinyenv")
 ```
 
 ## Usage
 
-Add usage information and examples here.
+Instead of `Sys.setenv()`, use `shinyenv::shiny_setenv()`,
+
+``` r
+# NO: Sys.setenv(foo = "bar", baz = "foo")
+shinyenv::shiny_setenv(foo = "bar", baz = "foo")
+```
+
+Instead of `Sys.getenv()`, use `shinyenv::shiny_getenv()`,
+
+``` r
+# NO: Sys.getenv("foo")
+shinyenv::shiny_getenv("foo")
+```
 
 ## Code of Conduct
 
