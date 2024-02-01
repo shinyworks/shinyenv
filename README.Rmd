@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 # shinyenv
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/shinyenv)](https://CRAN.R-project.org/package=shinyenv)
+[![Codecov test coverage](https://codecov.io/gh/shinyworks/shinyenv/branch/main/graph/badge.svg)](https://app.codecov.io/gh/shinyworks/shinyenv?branch=main)
+[![R-CMD-check](https://github.com/shinyworks/shinyenv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shinyworks/shinyenv/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 An experimental package to capture and reroute dangerous Shiny function calls.
