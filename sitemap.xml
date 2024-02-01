@@ -28,6 +28,15 @@
     <loc>https://shinyworks.github.io/shinyenv/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://shinyworks.github.io/shinyenv/reference/shiny_getenv.html</loc>
+  </url>
+  <url>
+    <loc>https://shinyworks.github.io/shinyenv/reference/shiny_setenv.html</loc>
+  </url>
+  <url>
+    <loc>https://shinyworks.github.io/shinyenv/reference/shiny_unsetenv.html</loc>
+  </url>
+  <url>
     <loc>https://shinyworks.github.io/shinyenv/reference/shinyenv-package.html</loc>
   </url>
 </urlset>
