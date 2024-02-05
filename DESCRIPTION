@@ -11,7 +11,6 @@ URL: https://shinyenv.shinyworks.org/,
     https://github.com/shinyworks/shinyenv
 BugReports: https://github.com/shinyworks/shinyenv/issues
 Imports: 
-    purrr,
     rlang,
     shiny
 Suggests: 
