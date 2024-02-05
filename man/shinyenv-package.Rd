@@ -6,13 +6,13 @@
 \alias{shinyenv-package}
 \title{shinyenv: User-Specific Shiny Environments}
 \description{
-An experimental package to capture and reroute dangerous Shiny function calls.
+An experimental package to deal with environment-like variables in Shiny.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://shinyenv.shinyworks.org/}
   \item \url{https://github.com/shinyworks/shinyenv}
-  \item \url{https://shinyworks.github.io/shinyenv/}
   \item Report bugs at \url{https://github.com/shinyworks/shinyenv/issues}
 }
 

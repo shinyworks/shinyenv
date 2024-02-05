@@ -27,7 +27,47 @@ You can install the development version of shinyenv from
 pak::pak("shinyworks/shinyenv")
 ```
 
+Alternatively, you can use the functions without taking a dependency on
+{shinyenv}:
+
+``` r
+# install.packages("usethis")
+usethis::use_standalone("shinyworks/shinyenv", "envvars")
+```
+
 ## Usage
+
+### You probably shouldn’t use this package.
+
+> You might see advice to use `session$userData` or other techniques to
+> break out of the module straitjacket. Be wary of such advice: it’s
+> showing you how to work around the rules imposed by namespacing,
+> making it easy to re-introduce much complexity to your app and
+> significantly reducing the benefits of using a module in the first
+> place.  
+> – Hadley Wickham, <cite>[Mastering
+> Shiny](https://mastering-shiny.org/scaling-modules.html#inputs-and-outputs)</cite>
+
+You should almost always use Shiny’s built-in mechanisms for setting and
+accessing variables. I highly recommend reading [Mastering
+Shiny](https://mastering-shiny.org/) to be certain that you actually
+need this type of variable before using the options presented here.
+
+Shiny variables can be roughly divided into three categories:
+
+- **App-wide variables that apply to all users:** Use normal R
+  variables, options (`getOption()`), and/or environment variables
+  (`Sys.getenv()`).
+- **Variables that apply to a single user:** Almost always use Shiny’s
+  `reactiveValues()`, `reactiveVal()`, `reactive()`, the `input` system,
+  and/or return values from modules.
+- **Variables that apply to a single user, are shared across multiple
+  modules, and can be updated in multiple places:** Use this package.
+  These should be places where, in a non-Shiny context, you would use
+  `Sys.setenv()` to set a variable (for yourself) and `Sys.getenv()` to
+  get it.
+
+### But if you’re sure you want to…
 
 Instead of `Sys.setenv()`, use `shinyenv::shiny_setenv()`,
 

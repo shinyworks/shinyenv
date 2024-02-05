@@ -17,13 +17,7 @@
 #' session$userData$foo
 #' session$userData[["baz"]]
 shiny_setenv <- function(..., session = shiny::getDefaultReactiveDomain()) {
-  # TODO: Validate ... (named) before using it.
-  success <- purrr::imap_lgl(rlang::list2(...), \(x, i) {
-    # TODO: Stabilize x and i to character scalar.
-    session$userData[[i]] <- as.character(x)
-    return(TRUE)
-  })
-  return(invisible(unname(success)))
+  .shiny_setenv(..., session = session)
 }
 
 #' Get Shiny User Variables
@@ -44,13 +38,7 @@ shiny_setenv <- function(..., session = shiny::getDefaultReactiveDomain()) {
 shiny_getenv <- function(nms,
                          unset = "",
                          session = shiny::getDefaultReactiveDomain()) {
-  # TODO: Validate nms (character) and unset (character scalar).
-  purrr::map_chr(nms, \(name) {
-    if (name %in% names(session$userData)) {
-      return(session$userData[[name]])
-    }
-    return(unset)
-  })
+  .shiny_getenv(nms, unset = unset, session = session)
 }
 
 #' Unset Shiny User Variables
@@ -69,5 +57,5 @@ shiny_getenv <- function(nms,
 #' shiny_unsetenv(c("foo", "baz"), session = session)
 #' names(session$userData)
 shiny_unsetenv <- function(nms, session = shiny::getDefaultReactiveDomain()) {
-  return(invisible(rlang::env_unbind(session$userData, nms)))
+  .shiny_unsetenv(nms, session = session)
 }
