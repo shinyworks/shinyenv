@@ -72,18 +72,44 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"shinyworks/shinyenv"</span><span class="op">)</span></span></code></pre></div>
+<p>Alternatively, you can use the functions without taking a dependency on {shinyenv}:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("usethis")</span></span>
+<span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_standalone</span><span class="op">(</span><span class="st">"shinyworks/shinyenv"</span>, <span class="st">"envvars"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<div class="section level3">
+<h3 id="you-probably-shouldnt-use-this-package">You probably shouldn’t use this package.<a class="anchor" aria-label="anchor" href="#you-probably-shouldnt-use-this-package"></a>
+</h3>
+<blockquote>
+<p>You might see advice to use <code>session$userData</code> or other techniques to break out of the module straitjacket. Be wary of such advice: it’s showing you how to work around the rules imposed by namespacing, making it easy to re-introduce much complexity to your app and significantly reducing the benefits of using a module in the first place.<br>
+– Hadley Wickham, <cite><a href="https://mastering-shiny.org/scaling-modules.html#inputs-and-outputs" class="external-link">Mastering Shiny</a></cite></p>
+</blockquote>
+<p>You should almost always use Shiny’s built-in mechanisms for setting and accessing variables. I highly recommend reading <a href="https://mastering-shiny.org/" class="external-link">Mastering Shiny</a> to be certain that you actually need this type of variable before using the options presented here.</p>
+<p>Shiny variables can be roughly divided into three categories:</p>
+<ul>
+<li>
+<strong>App-wide variables that apply to all users:</strong> Use normal R variables, options (<code><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption()</a></code>), and/or environment variables (<code><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv()</a></code>).</li>
+<li>
+<strong>Variables that apply to a single user:</strong> Almost always use Shiny’s <code>reactiveValues()</code>, <code>reactiveVal()</code>, <code>reactive()</code>, the <code>input</code> system, and/or return values from modules.</li>
+<li>
+<strong>Variables that apply to a single user, are shared across multiple modules, and can be updated in multiple places:</strong> Use this package. These should be places where, in a non-Shiny context, you would use <code><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv()</a></code> to set a variable (for yourself) and <code><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv()</a></code> to get it.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="but-if-youre-sure-you-want-to">But if you’re sure you want to…<a class="anchor" aria-label="anchor" href="#but-if-youre-sure-you-want-to"></a>
+</h3>
 <p>Instead of <code><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv()</a></code>, use <code><a href="reference/shiny_setenv.html">shinyenv::shiny_setenv()</a></code>,</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># NO: Sys.setenv(foo = "bar", baz = "foo")</span></span>
 <span><span class="fu">shinyenv</span><span class="fu">::</span><span class="fu"><a href="reference/shiny_setenv.html">shiny_setenv</a></span><span class="op">(</span>foo <span class="op">=</span> <span class="st">"bar"</span>, baz <span class="op">=</span> <span class="st">"foo"</span><span class="op">)</span></span></code></pre></div>
 <p>Instead of <code><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv()</a></code>, use <code><a href="reference/shiny_getenv.html">shinyenv::shiny_getenv()</a></code>,</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># NO: Sys.getenv("foo")</span></span>
 <span><span class="fu">shinyenv</span><span class="fu">::</span><span class="fu"><a href="reference/shiny_getenv.html">shiny_getenv</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
